@@ -40,6 +40,37 @@ public class sorting {
         }
     }
 
+    public static void countingSort(int[]arr){
+        //generating self the range by taking the maxinmum no as range
+        int range=0;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i]>range) {
+                range=arr[i];
+            }
+        }
+        //generating the frequency arr
+        int[] freqArr= new int[range+1];
+        for (int i = 0; i < arr.length; i++) {
+            freqArr[arr[i]]++;
+        }
+        System.out.println("Frequncy array : ");
+        printArr(freqArr);
+
+        //Converting the frequency array to sorted array
+        int index=0;
+        for (int i = 0; i < freqArr.length; i++) {
+            while (freqArr[i]!=0) {
+                arr[index]=i;
+                index++;
+                freqArr[i]--;
+            }
+        }
+        System.out.println("the main array");
+        printArr(arr);
+    }
+
+
+
     public static void printArr(int[] arr) {
         for (int i = 0; i < arr.length; i++) {
             System.out.print(arr[i] + " ");
@@ -47,10 +78,11 @@ public class sorting {
     }
 
     public static void main(String[] args) {
-        int[] arr = { 5, 4, 3, 2, 1 };
+        int[] arr = { 5, 4, 3, 2, 1,5,3,4,1,0 };
         // bubbleSort(arr);
         // selectionSort(arr);
-        insertionSort(arr);
-        printArr(arr);
+        // insertionSort(arr);
+        // printArr(arr);
+        countingSort(arr);
     }
 }
